@@ -1,5 +1,6 @@
 {
   "name": "modern-portfolio",
+  "description": "A modern portfolio website",
   "version": "0.0.0",
   "scripts": {
     "start": "node server.js",
