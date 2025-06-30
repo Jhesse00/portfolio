@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Code2, Shield, Terminal } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import emailjs from "@emailjs/browser";
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -21,18 +22,13 @@ const formSchema = z.object({
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com",
-    icon: Code2,
+    href: "https://github.com/Jhesse00",
+    icon: Github,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com",
-    icon: Shield,
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com",
-    icon: Terminal,
+    href: "https://www.linkedin.com/in/johanne-hesse-ab965521a",
+    icon: Linkedin,
   },
 ];
 
@@ -54,12 +50,33 @@ export const Contact: React.FC = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    form.reset();
+    const currentTime = new Date().toLocaleString();
+    emailjs.send(
+      "service_cgepqrb", // EmailJS Service ID
+      "template_fzmw17w", // EmailJS Template ID
+      {
+        name: values.name,
+        email: values.email,
+        message: values.message,
+        time: currentTime,
+      },
+      "hdGNEUIR73_1C15Do" // Public Key provided
+    ).then(
+      (result) => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        form.reset();
+      },
+      (error) => {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again later.",
+        });
+        console.error("EmailJS error:", error);
+      }
+    );
   }
 
   return (
@@ -72,12 +89,12 @@ export const Contact: React.FC = () => {
         className="container px-4 md:px-6"
       >
         <div className="mx-auto max-w-2xl space-y-8">
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Get in Touch
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Let's Connect! 🤝
             </h2>
-            <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Have a question or want to work together? Feel free to reach out!
+            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+              Feel free to reach out for collaborations or just a friendly chat! 💬
             </p>
           </div>
           <div className="mx-auto grid gap-8">
@@ -136,22 +153,16 @@ export const Contact: React.FC = () => {
             </Form>
             <div className="flex justify-center space-x-4">
               {socialLinks.map((link) => (
-                <Button
+                <a
                   key={link.name}
-                  variant="ghost"
-                  size="icon"
-                  asChild
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:text-primary"
                 >
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary"
-                  >
-                    <link.icon className="h-5 w-5" />
-                    <span className="sr-only">{link.name}</span>
-                  </a>
-                </Button>
+                  <link.icon className="h-6 w-6" />
+                  <span className="sr-only">{link.name}</span>
+                </a>
               ))}
             </div>
           </div>

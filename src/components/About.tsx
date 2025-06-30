@@ -40,16 +40,18 @@ const About = () => {
       >
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <motion.div variants={itemVariants} className="space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              About Me
-            </h2>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              I’m a passionate cybersecurity student 
-              with a strong interest in coding and technology. 
-              Currently pursuing a degree in cybersecurity, 
-              I enjoy learning about protecting digital assets and building secure systems. 
-              I created this website from scratch as part of my journey to expand my skills and knowledge in the field.
-            </p>
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                About Me 🎯
+              </h2>
+              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                I’m a passionate cybersecurity student 
+                with a strong interest in coding and technology. 
+                Currently pursuing a degree in cybersecurity, 
+                I enjoy learning about protecting digital assets and building secure systems. 
+                I created this website from scratch as part of my journey to expand my skills and knowledge.
+              </p>
+            </div>
             <div className="grid gap-4 md:grid-cols-3">
               <motion.div
                 variants={itemVariants}
@@ -58,7 +60,7 @@ const About = () => {
                 <Shield className="h-8 w-8 text-primary" />
                 <h3 className="font-semibold">Security First</h3>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                  Prioritizing robust security measures in every project
+                  Learning to protect systems with strong security principles.
                 </p>
               </motion.div>
               <motion.div
@@ -68,7 +70,7 @@ const About = () => {
                 <Code2 className="h-8 w-8 text-primary" />
                 <h3 className="font-semibold">Clean Code</h3>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                  Writing maintainable and secure code
+                  Practicing clean and secure coding techniques.
                 </p>
               </motion.div>
               <motion.div
@@ -78,7 +80,7 @@ const About = () => {
                 <Terminal className="h-8 w-8 text-primary" />
                 <h3 className="font-semibold">Problem Solver</h3>
                 <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                  Finding innovative solutions to complex security challenges
+                 Enjoying the process of solving tech and security puzzles.
                 </p>
               </motion.div>
             </div>
@@ -101,4 +103,4 @@ const About = () => {
   );
 };
 
-export default About;
+export { About };

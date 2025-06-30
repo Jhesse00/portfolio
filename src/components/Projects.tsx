@@ -13,82 +13,65 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Cybersecurity Dashboard",
-    description: "Real-time network threat monitoring and visualization platform.",
-    technologies: ["React", "TypeScript", "Node.js", "WebSocket"],
-    githubLink: "https://github.com/johanne/cybersec-dashboard",
-    demoLink: "https://cybersec-dashboard.vercel.app"
-  },
-  {
-    title: "Security Scanner",
-    description: "Automated vulnerability assessment tool built with Python",
-    technologies: ["Python", "Docker", "REST API"],
-    githubLink: "https://github.com",
-    demoLink: "https://demo.com",
-  },
-  {
-    title: "Threat Detection System",
-    description: "Real-time network monitoring and threat detection platform",
-    technologies: ["React", "Node.js", "MongoDB"],
-    githubLink: "https://github.com",
-    demoLink: "https://demo.com",
-  },
-  {
-    title: "Secure Chat App",
-    description: "End-to-end encrypted messaging application",
-    technologies: ["TypeScript", "WebRTC", "Signal Protocol"],
-    githubLink: "https://github.com",
-    demoLink: "https://demo.com",
-  },
+    title: "iOS Health & Fitness App",
+    description: "WORK IN PROGRESS - An iOS health and fitness tracking application built with Swift. Features include workout tracking, health metrics monitoring, and personalized fitness recommendations.",
+    technologies: ["Swift", "Xcode", "iOS SDK", "HealthKit"],
+    githubLink: "https://github.com/Jhesse00/",
+  }
 ];
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 space-y-4"
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col bg-card rounded-lg shadow-lg overflow-hidden border border-accent/20 hover:border-primary/20 transition-colors"
     >
-      <div className="flex justify-between items-start">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-          {project.title}
-        </h3>
-        <div className="flex items-center gap-2">
-          {project.githubLink && (
-            <a 
-              href={project.githubLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-700 dark:hover:text-white transition-colors"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-          )}
-          {project.demoLink && (
-            <a 
-              href={project.demoLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-700 dark:hover:text-white transition-colors"
-            >
-              <ExternalLink className="h-5 w-5" />
-            </a>
-          )}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        <p className="text-gray-500 dark:text-gray-400 mb-4 flex-grow">
+          {project.description}
+        </p>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-1 text-xs rounded-full bg-accent/50 text-accent-foreground"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          <div className="flex space-x-3">
+            <Button asChild size="sm" variant="outline">
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center"
+              >
+                <Github className="h-4 w-4 mr-2" />
+                View Code
+              </a>
+            </Button>
+            {project.demoLink && (
+              <Button asChild size="sm" variant="outline">
+                <a
+                  href={project.demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Live Demo
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-      <p className="text-gray-600 dark:text-gray-300 text-sm">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2">
-        {project.technologies.map((tech, index) => (
-          <span 
-            key={index} 
-            className="bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-full"
-          >
-            {tech}
-          </span>
-        ))}
       </div>
     </motion.div>
   );
@@ -96,26 +79,23 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 export function Projects() {
   return (
-    <section 
-      id="projects" 
-      className="container mx-auto px-4 py-16 md:py-24 space-y-8"
-    >
-      <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Featured Projects
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-          Innovative solutions showcasing my cybersecurity expertise
-        </p>
-      </div>
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
+    <section id="projects" className="py-16 md:py-20">
+      <div className="container px-4 md:px-6">
+        <div className="space-y-6 text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            Featured Projects 🚀
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+            Exploring the intersection of iOS development and cybersecurity through innovative solutions
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
-
-export default Projects;

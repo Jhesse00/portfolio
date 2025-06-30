@@ -1,21 +1,16 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import React from 'react';
 
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/Jhesse00",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/johanne-hesse-ab965521a",
     icon: Linkedin,
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com",
-    icon: Twitter,
   },
 ];
 
@@ -39,19 +34,19 @@ export function Footer() {
       <div className="container px-4 py-8 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Johanne</h3>
+            <h3 className="text-lg font-semibold">About Me 👋</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Cybersecurity Professional
+              Cybersecurity Student 👨🏽‍🎓
             </p>
           </div>
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Navigation</h3>
+            <h3 className="text-lg font-semibold">Quick Links 🔗</h3>
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-sm hover:text-primary"
+                  className="text-sm hover:text-primary transition-colors text-left w-fit"
                 >
                   {link.name}
                 </button>
@@ -59,7 +54,7 @@ export function Footer() {
             </nav>
           </div>
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Connect</h3>
+            <h3 className="text-lg font-semibold">Connect 🌐</h3>
             <div className="flex space-x-4">
               {socialLinks.map((link) => (
                 <a
@@ -67,7 +62,11 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-primary"
+                  className="p-2 hover:text-primary transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(link.href, '_blank', 'noopener,noreferrer');
+                  }}
                 >
                   <link.icon className="h-5 w-5" />
                   <span className="sr-only">{link.name}</span>
@@ -76,19 +75,19 @@ export function Footer() {
             </div>
           </div>
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact</h3>
+            <h3 className="text-lg font-semibold">Contact 📧</h3>
             <a
-              href="mailto:contact@example.com"
-              className="flex items-center space-x-2 text-sm hover:text-primary"
+              href="mailto:johannephesse@gmail.com"
+              className="flex items-center space-x-2 text-sm hover:text-primary transition-colors group"
             >
-              <Mail className="h-4 w-4" />
-              <span>contact@example.com</span>
+              <Mail className="h-4 w-4 group-hover:text-primary" />
+              <span>johannephesse@gmail.com</span>
             </a>
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Johanne. All rights reserved.
+            &copy; {new Date().getFullYear()} Johanne Hesse. All rights reserved.
           </p>
         </div>
       </div>

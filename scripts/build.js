@@ -21,10 +21,13 @@ async function build() {
       target: ['es2020'],
       outfile: 'public/main.js',
       loader: {
+        '.js': 'jsx',
         '.tsx': 'tsx',
-        '.ts': 'ts',
-        '.jsx': 'jsx',
-        '.js': 'jsx'
+        '.ts': 'tsx',
+        '.jpeg': 'file',
+        '.jpg': 'file',
+        '.png': 'file',
+        '.svg': 'file',
       },
       define: {
         'process.env.NODE_ENV': '"production"'

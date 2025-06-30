@@ -8,6 +8,7 @@ const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
+  { name: "Resume", href: "#resume" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -16,7 +17,7 @@ export const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const scrollToSection = (href) => {
+  const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -29,7 +30,7 @@ export const Navbar = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-shrink-0">
-            <span className="text-xl font-bold">Portfolio</span>
+            <span className="text-xl font-bold">Johanne Hesse</span>
           </div>
 
           {/* Desktop Navigation */}
