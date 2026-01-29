@@ -13,9 +13,9 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "iOS Health & Fitness App",
-    description: "WORK IN PROGRESS - An iOS health and fitness tracking application built with Swift. Features include workout tracking, health metrics monitoring, and personalized fitness recommendations.",
-    technologies: ["Swift", "Xcode", "iOS SDK", "HealthKit"],
+    title: "Home Lab (Linux Server + Docker)",
+    description: "Linux home server running Docker services with basic configuration, container lifecycle management, and uptime checks. Includes Pi-hole DNS filtering and Wireshark traffic analysis (DNS/HTTP/TCP) to validate behavior and support troubleshooting.",
+    technologies: ["Linux", "Docker", "Pi-hole", "Wireshark", "DNS", "TCP/IP"],
     githubLink: "https://github.com/Jhesse00/",
   }
 ];
@@ -86,7 +86,7 @@ export function Projects() {
             Featured Projects 🚀
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Exploring the intersection of iOS development and cybersecurity through innovative solutions
+            A selection of projects that show my skills across cybersecurity, systems, and development.
           </p>
         </div>
         
