@@ -52,7 +52,7 @@ export const Contact: React.FC = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const currentTime = new Date().toLocaleString();
     emailjs.send(
-      "service_cgepqrb", // EmailJS Service ID
+      "service_ldefmzp", // EmailJS Service ID
       "template_fzmw17w", // EmailJS Template ID
       {
         name: values.name,
@@ -60,7 +60,7 @@ export const Contact: React.FC = () => {
         message: values.message,
         time: currentTime,
       },
-      "hdGNEUIR73_1C15Do" // Public Key provided
+      "37ZPVtoKipem5zUWb" // Public Key provided
     ).then(
       (result) => {
         toast({
