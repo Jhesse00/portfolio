@@ -24,7 +24,7 @@ export function Hero() {
       
       {/* Content */}
       <div className="container px-4 md:px-6 relative">
-        <div className="grid gap-6 lg:grid-cols-[1fr_290px] lg:gap-8 xl:grid-cols-[1fr_310px]">
+        <div className="grid gap-6 lg:grid-cols-[1fr_190px] lg:gap-8 xl:grid-cols-[1fr_210px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center justify-center"
           >
-            <div className="relative w-[260px] h-[260px] sm:w-[280px] sm:h-[280px]">
+            <div className="relative w-[200px] h-[200px] sm:w-[200px] sm:h-[200px]">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/20 rounded-full blur-3xl" />
               <div className="relative w-full h-full rounded-full overflow-hidden">
                 <img
