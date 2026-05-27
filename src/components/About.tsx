@@ -1,45 +1,31 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { Code2, Shield, Terminal } from 'lucide-react';
 
-const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-      },
-    },
-  };
+const values = [
+  {
+    title: "Security First",
+    description: "Learning to protect systems with strong security principles.",
+    icon: Shield,
+  },
+  {
+    title: "Clean Code",
+    description: "Practicing clean and secure coding techniques.",
+    icon: Code2,
+  },
+  {
+    title: "Problem Solver",
+    description: "Enjoying the process of solving tech and security puzzles.",
+    icon: Terminal,
+  },
+];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
+export function About() {
   return (
-    <section id="about" className="py-24 bg-accent/50">
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="container px-4 md:px-6"
-      >
+    <section id="about" className="py-20 md:py-24 bg-accent/50">
+      <ScrollReveal className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-          <motion.div variants={itemVariants} className="space-y-4">
+          <div className="space-y-6">
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 About Me 🎯
@@ -53,54 +39,31 @@ const About = () => {
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-3">
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col items-center space-y-2 border rounded-lg p-4"
-              >
-                <Shield className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold">Security First</h3>
-                <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                  Learning to protect systems with strong security principles.
-                </p>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col items-center space-y-2 border rounded-lg p-4"
-              >
-                <Code2 className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold">Clean Code</h3>
-                <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                  Practicing clean and secure coding techniques.
-                </p>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col items-center space-y-2 border rounded-lg p-4"
-              >
-                <Terminal className="h-8 w-8 text-primary" />
-                <h3 className="font-semibold">Problem Solver</h3>
-                <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-                 Enjoying the process of solving tech and security puzzles.
-                </p>
-              </motion.div>
+              {values.map((value) => (
+                <div
+                  key={value.title}
+                  className="flex flex-col items-center space-y-3 rounded-lg border bg-background/40 p-5 text-center shadow-sm transition-all duration-300 ease-out motion-safe:hover:-translate-y-1 hover:border-primary/20 hover:shadow-md"
+                >
+                  <value.icon className="h-8 w-8 text-primary" />
+                  <h3 className="font-semibold">{value.title}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {value.description}
+                  </p>
+                </div>
+              ))}
             </div>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center justify-center"
-          >
+          </div>
+          <div className="flex items-center justify-center">
             <img
               src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
               alt="Cybersecurity Illustration"
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover shadow-lg ring-1 ring-border/60"
               width={600}
               height={400}
             />
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </ScrollReveal>
     </section>
   );
-};
-
-export { About };
+}

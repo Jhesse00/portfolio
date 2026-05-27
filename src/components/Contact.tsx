@@ -1,6 +1,3 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Github, Linkedin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -32,12 +30,7 @@ const socialLinks = [
   },
 ];
 
-export const Contact: React.FC = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
+export function Contact() {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,42 +45,35 @@ export const Contact: React.FC = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const currentTime = new Date().toLocaleString();
     emailjs.send(
-      "service_ldefmzp", // EmailJS Service ID
-      "template_fzmw17w", // EmailJS Template ID
+      "service_ldefmzp",
+      "template_fzmw17w",
       {
         name: values.name,
         email: values.email,
         message: values.message,
         time: currentTime,
       },
-      "37ZPVtoKipem5zUWb" // Public Key provided
+      "37ZPVtoKipem5zUWb"
     ).then(
-      (result) => {
+      () => {
         toast({
           title: "Message sent!",
           description: "Thank you for your message. I'll get back to you soon.",
         });
         form.reset();
       },
-      (error) => {
+      () => {
         toast({
           title: "Error",
           description: "Failed to send message. Please try again later.",
         });
-        console.error("EmailJS error:", error);
       }
     );
   }
 
   return (
-    <section id="contact" className="py-24 bg-accent/50">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.5 }}
-        className="container px-4 md:px-6"
-      >
+    <section id="contact" className="py-20 md:py-24 bg-accent/50">
+      <ScrollReveal className="container px-4 md:px-6">
         <div className="mx-auto max-w-2xl space-y-8">
           <div className="text-center space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -101,7 +87,7 @@ export const Contact: React.FC = () => {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6"
+                className="space-y-6 rounded-lg border bg-background/50 p-5 shadow-sm md:p-6"
               >
                 <FormField
                   control={form.control}
@@ -158,7 +144,7 @@ export const Contact: React.FC = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 hover:text-primary"
+                  className="rounded-full p-2 transition-all duration-200 ease-out hover:bg-background hover:text-primary hover:shadow-sm motion-safe:hover:-translate-y-0.5"
                 >
                   <link.icon className="h-6 w-6" />
                   <span className="sr-only">{link.name}</span>
@@ -167,7 +153,7 @@ export const Contact: React.FC = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </ScrollReveal>
     </section>
   );
 }

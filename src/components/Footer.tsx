@@ -1,5 +1,4 @@
 import { Github, Linkedin, Mail } from "lucide-react";
-import React from 'react';
 
 const socialLinks = [
   {
@@ -22,7 +21,7 @@ const navLinks = [
 ];
 
 export function Footer() {
-  const scrollToSection = (href) => {
+  const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -31,7 +30,7 @@ export function Footer() {
 
   return (
     <footer className="border-t bg-background">
-      <div className="container px-4 py-8 md:px-6">
+      <div className="container px-4 py-10 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">About Me 👋</h3>
@@ -46,7 +45,7 @@ export function Footer() {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-sm hover:text-primary transition-colors text-left w-fit"
+                  className="w-fit text-left text-sm transition-colors hover:text-primary"
                 >
                   {link.name}
                 </button>
@@ -62,7 +61,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 hover:text-primary transition-colors"
+                  className="rounded-full p-2 transition-all duration-200 ease-out hover:bg-accent hover:text-primary motion-safe:hover:-translate-y-0.5"
                   onClick={(e) => {
                     e.preventDefault();
                     window.open(link.href, '_blank', 'noopener,noreferrer');
@@ -78,7 +77,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold">Contact 📧</h3>
             <a
               href="mailto:johannephesse@gmail.com"
-              className="flex items-center space-x-2 text-sm hover:text-primary transition-colors group"
+              className="group flex items-center space-x-2 text-sm transition-colors hover:text-primary"
             >
               <Mail className="h-4 w-4 group-hover:text-primary" />
               <span>johannephesse@gmail.com</span>

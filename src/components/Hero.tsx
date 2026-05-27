@@ -1,9 +1,11 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profileImage from "../assets/headshot.jpeg";
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -13,7 +15,6 @@ export function Hero() {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-background to-accent/20"
     >
-      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-black/[0.02] dark:bg-grid-white/[0.02]" />
         <div className="absolute -inset-x-2 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
@@ -22,14 +23,13 @@ export function Hero() {
         <div className="absolute -inset-y-2 right-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
       </div>
       
-      {/* Content */}
       <div className="container px-4 md:px-6 relative">
         <div className="grid gap-6 lg:grid-cols-[1fr_190px] lg:gap-8 xl:grid-cols-[1fr_210px]">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center space-y-4"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="flex flex-col justify-center space-y-5"
           >
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
@@ -54,14 +54,14 @@ export function Hero() {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.92 }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
             className="flex items-center justify-center"
           >
             <div className="relative w-[200px] h-[200px] sm:w-[200px] sm:h-[200px]">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/20 rounded-full blur-3xl" />
-              <div className="relative w-full h-full rounded-full overflow-hidden">
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl ring-1 ring-border/60">
                 <img
                   src={profileImage}
                   alt="Johanne Hesse"
