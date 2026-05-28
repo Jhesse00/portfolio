@@ -22,6 +22,11 @@ const navLinks = [
 
 export function Footer() {
   const scrollToSection = (href: string) => {
+    if (window.location.pathname !== "/") {
+      window.location.href = `/${href}`;
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

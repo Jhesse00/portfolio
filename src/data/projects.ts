@@ -4,6 +4,7 @@ export interface Project {
   categories: string[];
   technologies: string[];
   githubLink: string;
+  caseStudyLink?: string;
   demoLink?: string;
   featured?: boolean;
 }
@@ -15,6 +16,8 @@ export const projects: Project[] = [
     categories: ["Cybersecurity", "Web App", "Privacy", "Python"],
     technologies: ["Python", "Flask", "ExifTool", "Pillow", "PyMuPDF", "Docker", "pytest"],
     githubLink: "https://github.com/Jhesse00/metadata-scanner",
+    caseStudyLink: "https://github.com/Jhesse00/metadata-scanner#metadata-privacy-scanner-web-app",
+    demoLink: "/metadata-scanner",
     featured: true,
   },
   {

@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from "lucide-react";
+import { BookOpen, Github, Play, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import type { Project } from "@/data/projects";
@@ -18,8 +18,8 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-xl font-semibold leading-tight">{project.title}</h3>
             {project.featured && (
-              <span className="shrink-0 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary border border-primary/20 motion-safe:animate-featured-pulse">
-                Featured
+              <span className="shrink-0 rounded-full bg-primary/10 p-2 text-primary border border-primary/20 motion-safe:animate-featured-pulse" aria-label="Featured project" title="Featured project">
+                <Star className="h-4 w-4 fill-current" />
               </span>
             )}
           </div>
@@ -47,6 +47,15 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="flex flex-wrap gap-3">
+            {project.demoLink && (
+              <Button asChild size="sm" variant="default">
+                <a href={project.demoLink} className="inline-flex items-center">
+                  <Play className="h-4 w-4 mr-2" />
+                  Try Demo
+                </a>
+              </Button>
+            )}
+
             <Button asChild size="sm" variant="outline">
               <a
                 href={project.githubLink}
@@ -59,19 +68,20 @@ export function ProjectCard({ project }: { project: Project }) {
               </a>
             </Button>
 
-            {project.demoLink && (
+            {project.caseStudyLink && (
               <Button asChild size="sm" variant="outline">
                 <a
-                  href={project.demoLink}
+                  href={project.caseStudyLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center"
                 >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Live Demo
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Case Study
                 </a>
               </Button>
             )}
+
           </div>
         </div>
       </div>
