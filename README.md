@@ -1,6 +1,4 @@
-# Johanne Hesse Portfolio
-
-A modern portfolio site for showcasing cybersecurity, development, and systems projects. The site highlights featured work, technical skills, resume access, and contact options in a responsive light/dark theme.
+# Johanne Hesse's Portfolio
 
 ## Features
 
@@ -67,4 +65,3 @@ scripts/                 Build scripts
 
 ## Screenshots
 
-Screenshots can be added here after capturing the live homepage, projects section, and contact section.
