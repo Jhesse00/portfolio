@@ -11,7 +11,7 @@ export function Resume() {
           Resume
         </h2>
         <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-          View my resume below to learn more about my professional background and skills in cybersecurity.
+          View my resume below to learn more about my professional background and skills in IT support, systems, and networking.
         </p>
       </ScrollReveal>
       
