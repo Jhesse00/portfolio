@@ -2,9 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141414'/%3E%3Cpath d='M18 16v22c0 8 5 12 13 12 9 0 15-5 15-15V16h-8v19c0 5-2 7-6 7-3 0-6-2-6-7V16z' fill='%23f5f5f0'/%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Johanne Hesse - Cybersecurity Portfolio</title>
+    <meta name="description" content="Johanne Hesse is an Information Systems and Technology student focused on IT support, systems, networking, and cybersecurity." />
+    <title>Johanne Hesse | IT &amp; Cybersecurity</title>
+    <script>
+      try {
+        var savedPalette = localStorage.getItem('portfolio-palette');
+        document.documentElement.dataset.palette = savedPalette === 'violet' ? 'purple' : (['purple', 'graphite', 'ocean', 'forest'].includes(savedPalette) ? savedPalette : 'purple');
+      } catch (error) {
+        document.documentElement.dataset.palette = 'purple';
+      }
+    </script>
     <link href="/styles.css" rel="stylesheet">
   </head>
   <body>

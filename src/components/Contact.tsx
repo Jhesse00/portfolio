@@ -1,159 +1,38 @@
-import { Github, Linkedin } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import emailjs from "@emailjs/browser";
-
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import { Check, Copy, Github, Linkedin, Mail } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/Jhesse00",
-    icon: Github,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/johanne-hesse-ab965521a",
-    icon: Linkedin,
-  },
-];
+const email = "johannephesse@gmail.com";
 
 export function Contact() {
-  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const currentTime = new Date().toLocaleString();
-    emailjs.send(
-      "service_ldefmzp",
-      "template_fzmw17w",
-      {
-        name: values.name,
-        email: values.email,
-        message: values.message,
-        time: currentTime,
-      },
-      "37ZPVtoKipem5zUWb"
-    ).then(
-      () => {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        form.reset();
-      },
-      () => {
-        toast({
-          title: "Error",
-          description: "Failed to send message. Please try again later.",
-        });
-      }
-    );
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
   }
 
   return (
-    <section id="contact" className="py-20 md:py-24 bg-accent/50">
-      <ScrollReveal className="container px-4 md:px-6">
-        <div className="mx-auto max-w-2xl space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Let's Connect! 🤝
-            </h2>
-            <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-              Feel free to reach out for collaborations or just a friendly chat! 💬
-            </p>
+    <section id="contact" className="scroll-mt-20 border-t border-border bg-background py-20 sm:py-28">
+      <div className="section-shell">
+        <ScrollReveal><h2 className="section-title">Let&apos;s Connect</h2></ScrollReveal>
+        <ScrollReveal delay={.08} className="mt-10 grid gap-10 rounded-2xl border border-border bg-card/70 p-6 sm:p-8 lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col items-start">
+            <p className="max-w-md text-base leading-7 text-muted-foreground">Have an IT opportunity, a technical project, or a problem worth solving? Email is the most reliable way to reach me.</p>
+            <a href={`mailto:${email}?subject=Portfolio%20inquiry`} className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"><Mail className="h-4 w-4" />Email me</a>
           </div>
-          <div className="mx-auto grid gap-8">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 rounded-lg border bg-background/50 p-5 shadow-sm md:p-6"
-              >
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Your message"
-                          className="min-h-[120px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="w-full">
-                  Send Message
-                </Button>
-              </form>
-            </Form>
-            <div className="flex justify-center space-x-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full p-2 transition-all duration-200 ease-out hover:bg-background hover:text-primary hover:shadow-sm motion-safe:hover:-translate-y-0.5"
-                >
-                  <link.icon className="h-6 w-6" />
-                  <span className="sr-only">{link.name}</span>
-                </a>
-              ))}
-            </div>
+          <div className="flex flex-col justify-center gap-1 lg:border-l lg:border-white/[0.07] lg:pl-14">
+            <div className="flex items-center gap-3 border-b border-border py-3"><Mail className="h-4 w-4 shrink-0 text-primary/70" /><a href={`mailto:${email}`} className="min-w-0 flex-1 truncate text-sm text-muted-foreground underline decoration-primary/25 underline-offset-4 hover:text-foreground">{email}</a><button onClick={copyEmail} className="rounded p-2 text-muted-foreground hover:bg-accent hover:text-primary" aria-label="Copy email address">{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</button><span className="sr-only" aria-live="polite">{copied ? "Email address copied" : ""}</span></div>
+            <a href="https://www.linkedin.com/in/johannehesse" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 border-b border-border py-3 text-sm text-muted-foreground hover:text-foreground"><Linkedin className="h-4 w-4 text-primary/70" />linkedin.com/in/johannehesse</a>
+            <a href="https://github.com/Jhesse00" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-3 text-sm text-muted-foreground hover:text-foreground"><Github className="h-4 w-4 text-primary/70" />github.com/Jhesse00</a>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

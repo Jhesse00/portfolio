@@ -1,95 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Menu } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
-import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Education", href: "#education" },
   { name: "Projects", href: "#projects" },
-  { name: "Resume", href: "#resume" },
-  { name: "Contact", href: "#contact" },
 ];
 
-export const Navbar = () => {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const scrollToSection = (href: string) => {
+  const navigate = (href: string) => {
+    setIsOpen(false);
     if (window.location.pathname !== "/") {
       window.location.href = `/${href}`;
       return;
     }
-
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex-shrink-0">
-            <span className="text-xl font-bold">Johanne Hesse</span>
-          </div>
-
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ease-out hover:bg-accent hover:text-primary"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <ThemeToggle />
-            </div>
-          </div>
-
-          <div className="flex md:hidden">
-            <ThemeToggle />
-            <button
-              onClick={toggleMenu}
-              className="ml-2 inline-flex items-center justify-center rounded-md p-2 transition-colors hover:bg-accent"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+    <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || isOpen ? "border-b border-border bg-background/90 backdrop-blur-xl" : "bg-transparent"}`}>
+      <div className="section-shell flex h-20 items-center justify-between">
+        <button onClick={() => navigate("#home")} className="text-left text-sm font-semibold uppercase tracking-[0.2em] text-foreground">Johanne Hesse</button>
+        <div className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => <button key={item.href} onClick={() => navigate(item.href)} className="rounded-md px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-primary">{item.name}</button>)}
+          <button onClick={() => navigate("#contact")} className="ml-3 rounded-md bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-colors hover:brightness-110">Connect</button>
         </div>
+        <button onClick={() => setIsOpen((open) => !open)} className="flex h-11 w-11 items-center justify-center rounded-md border border-border bg-card text-muted-foreground md:hidden" aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={isOpen}>{isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}</button>
       </div>
-
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden"
-          >
-            <div className="space-y-1 px-4 pb-3 pt-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-accent"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
+        {isOpen && <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="border-t border-border bg-background px-6 pb-6 md:hidden">
+          {[...navItems, { name: "Connect", href: "#contact" }].map((item) => <button key={item.href} onClick={() => navigate(item.href)} className="block w-full border-b border-border py-4 text-left text-sm uppercase tracking-[0.18em] text-muted-foreground last:border-0">{item.name}</button>)}
+        </motion.div>}
       </AnimatePresence>
     </nav>
   );

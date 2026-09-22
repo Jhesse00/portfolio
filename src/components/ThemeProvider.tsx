@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import type { ReactNode } from "react";
 
-type Theme = "dark" | "light" | "system";
+type Theme = "dark";
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -15,7 +15,7 @@ type ThemeProviderState = {
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: "dark",
   setTheme: () => null,
 };
 
@@ -23,7 +23,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export const ThemeProvider = ({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) => {
@@ -34,18 +34,7 @@ export const ThemeProvider = ({
   useEffect(() => {
     const root = window.document.documentElement;
 
-    root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-
-      root.classList.add(systemTheme);
-      return;
-    }
-
+    root.classList.remove("light");
     root.classList.add(theme);
   }, [theme]);
 

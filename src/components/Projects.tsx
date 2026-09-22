@@ -4,28 +4,10 @@ import { projects } from "@/data/projects";
 
 export function Projects() {
   return (
-    <section id="projects" className="py-16 md:py-20">
-      <div className="container px-4 md:px-6">
-        <ScrollReveal className="space-y-6 text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Featured Projects 🚀
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            A selection of projects that show my skills across cybersecurity, systems, and development.
-          </p>
-        </ScrollReveal>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ScrollReveal
-              key={project.title}
-              className="h-full"
-              delay={index * 0.08}
-            >
-              <ProjectCard project={project} />
-            </ScrollReveal>
-          ))}
-        </div>
+    <section id="projects" className="scroll-mt-20 border-t border-border bg-background py-20 sm:py-28">
+      <div className="section-shell">
+        <ScrollReveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><h2 className="section-title">Projects</h2><p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground">Hands-on work across privacy, endpoint diagnostics, technical support, and network infrastructure.</p></div><span className="section-kicker">Selected work</span></ScrollReveal>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">{projects.map((project, index) => <ScrollReveal key={project.title} className={`h-full ${project.featured ? "md:col-span-2" : ""}`} delay={index * .06}><ProjectCard project={project} /></ScrollReveal>)}</div>
       </div>
     </section>
   );
