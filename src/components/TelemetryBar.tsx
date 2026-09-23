@@ -64,37 +64,39 @@ export function TelemetryBar() {
   }, [isOpen]);
 
   return (
-    <div className="relative inline-flex items-center" ref={popoverRef}>
-      {/* Telemetry Pill */}
+    <aside className="fixed bottom-5 left-5 z-40 sm:bottom-6 sm:left-6 select-none" ref={popoverRef} aria-label="Live System & Network Telemetry">
+      {/* Telemetry Pill HUD */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="card-sheen group inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card/60 px-3 py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-md transition-all duration-200 hover:border-primary/40 hover:text-foreground hover:shadow-[0_0_20px_hsl(var(--primary)/.15)] focus:outline-none"
+        className="card-sheen group inline-flex items-center gap-2 sm:gap-2.5 rounded-full border border-border/80 bg-card/80 px-2.5 sm:px-3 py-1.5 sm:py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-xl transition-all duration-300 hover:border-primary/50 hover:text-foreground hover:shadow-[0_0_25px_hsl(var(--primary)/.22)] active:scale-95 focus:outline-none"
         aria-label="View system & network telemetry"
         aria-expanded={isOpen}
       >
         {/* Status beacon */}
-        <span className="relative flex h-2 w-2 items-center justify-center">
+        <span className="relative flex h-2 w-2 shrink-0 items-center justify-center">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
         </span>
-        <span className="text-[10px] uppercase tracking-wider text-muted-foreground/90 group-hover:text-foreground">
+
+        {/* Desktop title */}
+        <span className="hidden text-[10px] uppercase tracking-wider text-muted-foreground/90 group-hover:text-foreground sm:inline">
           Systems Nominal
         </span>
 
-        <span className="h-3 w-px bg-border/80" />
+        <span className="hidden h-3 w-px bg-border/80 sm:block" />
 
-        {/* Latency */}
-        <span className="flex items-center gap-1 font-mono tabular-nums text-foreground/85">
+        {/* Latency badge */}
+        <span className="flex items-center gap-1 font-mono tabular-nums text-foreground/90">
           <Activity className={`h-3 w-3 text-primary ${isPinging ? "animate-spin" : ""}`} />
           <span>{ping !== null ? `${ping}ms` : "--"}</span>
         </span>
 
-        <span className="h-3 w-px bg-border/80" />
+        <span className="hidden h-3 w-px bg-border/80 sm:block" />
 
         {/* Security badge */}
-        <span className="flex items-center gap-1 text-muted-foreground/80">
+        <span className="hidden items-center gap-1 text-muted-foreground/80 sm:flex">
           <ShieldCheck className="h-3 w-3 text-emerald-400" />
-          <span className="hidden sm:inline">TLS 1.3</span>
+          <span>TLS 1.3</span>
         </span>
       </button>
 
@@ -103,7 +105,7 @@ export function TelemetryBar() {
         <div
           role="dialog"
           aria-label="System Telemetry Details"
-          className="card-sheen absolute bottom-full left-1/2 z-50 mb-3 w-72 -translate-x-1/2 rounded-xl border border-border/90 bg-card/95 p-4 text-xs shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 sm:left-auto sm:right-0 sm:translate-x-0"
+          className="card-sheen absolute bottom-full left-0 z-50 mb-3 w-72 rounded-xl border border-border/90 bg-card/95 p-4 text-xs shadow-2xl backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-150"
         >
           <div className="flex items-center justify-between border-b border-border/70 pb-2.5">
             <div className="flex items-center gap-2">
@@ -178,6 +180,6 @@ export function TelemetryBar() {
           </div>
         </div>
       )}
-    </div>
+    </aside>
   );
 }

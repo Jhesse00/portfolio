@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { MetadataScannerDemo } from "@/pages/MetadataScannerDemo";
 import { ColorSchemeWheel } from "@/components/ColorSchemeWheel";
+import { TelemetryBar } from "@/components/TelemetryBar";
 
 function App() {
   const isMetadataScannerDemo = window.location.pathname === "/metadata-scanner";
@@ -29,6 +30,7 @@ function App() {
           </main>
         )}
         <Footer />
+        <TelemetryBar />
         <ColorSchemeWheel />
         <Toaster />
       </div>
