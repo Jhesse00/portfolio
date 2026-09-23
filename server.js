@@ -17,6 +17,14 @@ app.use('/src', express.static(path.join(__dirname, 'src'), {
   }
 }));
 
+// Telemetry ping endpoint for real browser latency measurement
+app.get('/api/ping', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.json({ status: 'ok', timestamp: Date.now() });
+});
+
 // Fallback to index.html for client-side routing
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

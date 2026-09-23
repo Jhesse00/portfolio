@@ -70,6 +70,17 @@
   .section-kicker { @apply text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground; }
   .section-title { @apply text-3xl font-medium uppercase tracking-[0.18em] text-muted-foreground sm:text-4xl; }
   .theme-ambient { background: radial-gradient(45% 55% at 82% 47%, hsl(var(--primary) / .12), transparent 72%); }
+  .ambient-studio-light { background: radial-gradient(55% 50% at 50% 0%, hsl(var(--primary) / .08), transparent 75%); }
+  .card-sheen { box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08); }
+}
+
+@keyframes packet-flow {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-packet-flow {
+  animation: packet-flow 1.4s linear infinite;
 }
 
 /* Subtle hover and transition effects */
@@ -81,4 +92,58 @@
   .focus-glow {
     @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
   }
+
+  .btn-tactile {
+    @apply transition-transform duration-150 active:scale-[0.98];
+  }
+
+  /* Linear-style mouse spotlight card */
+  .spotlight-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 1px border highlight precisely following cursor */
+  .spotlight-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+      hsl(var(--primary) / 0.45),
+      transparent 75%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Soft specular surface illumination following cursor */
+  .spotlight-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      360px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+      hsl(var(--primary) / 0.07),
+      transparent 75%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .spotlight-card:hover::before,
+  .spotlight-card:hover::after {
+    opacity: 1;
+  }
 }
+
