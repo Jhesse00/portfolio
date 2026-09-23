@@ -8,6 +8,7 @@
     <title>Johanne Hesse | IT &amp; Cybersecurity</title>
     <script>
       try {
+        localStorage.removeItem('portfolio-palette-position');
         var savedPalette = localStorage.getItem('portfolio-palette');
         document.documentElement.dataset.palette = savedPalette === 'violet' ? 'purple' : (['purple', 'graphite', 'ocean', 'forest'].includes(savedPalette) ? savedPalette : 'purple');
       } catch (error) {
@@ -19,6 +20,6 @@
   <body>
     <div id="root"></div>
     <script src="/react-entry.js"></script>
-    <script src="/main.js"></script>
+    <script src="/main.js?v=3"></script>
   </body>
 </html>

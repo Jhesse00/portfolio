@@ -5,8 +5,12 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the public directory with no-cache for instant live updates
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  }
+}));
 
 // Serve src directory for TypeScript files
 app.use('/src', express.static(path.join(__dirname, 'src'), {
