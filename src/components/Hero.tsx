@@ -27,7 +27,7 @@ export function Hero() {
               <span className="card-sheen rounded-full border border-border bg-card/65 px-3 py-1.5 text-xs text-muted-foreground">Information Systems @ NYU</span>
               <span className="card-sheen rounded-full border border-border bg-card/65 px-3 py-1.5 text-xs text-muted-foreground">IT Support &amp; Cybersecurity</span>
             </div>
-            <h1 className="text-[clamp(3rem,8vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-foreground">Johanne Hesse</h1>
+            <h1 className="hero-name text-[clamp(3rem,8vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-foreground">Johanne Hesse</h1>
             <p className="mt-4 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">Information systems student building dependable support, networking, and security solutions.</p>
             <div className="mt-8 flex w-full flex-col gap-3 min-[430px]:w-auto min-[430px]:flex-row">
               <a href="mailto:johannephesse@gmail.com?subject=Portfolio%20inquiry" className="btn-tactile inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:brightness-110"><Mail className="h-4 w-4" />Get in touch</a>

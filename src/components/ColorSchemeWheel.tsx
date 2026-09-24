@@ -4,6 +4,13 @@ import { useReducedMotion } from "framer-motion";
 
 const palettes = [
   {
+    id: "rainbow",
+    name: "Rainbow Prism",
+    subtitle: "Chromatic Iridescent",
+    accent: "linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8)",
+    bg: "#150a24",
+  },
+  {
     id: "purple",
     name: "Purple Night",
     subtitle: "Signature Amethyst",
@@ -31,20 +38,13 @@ const palettes = [
     accent: "#4ade80",
     bg: "#091811",
   },
-  {
-    id: "rainbow",
-    name: "Rainbow Prism",
-    subtitle: "Chromatic Iridescent",
-    accent: "linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8)",
-    bg: "#150a24",
-  },
 ] as const;
 
 type PaletteId = typeof palettes[number]["id"];
 
 export function ColorSchemeWheel() {
   const [open, setOpen] = useState(false);
-  const [palette, setPalette] = useState<PaletteId>("purple");
+  const [palette, setPalette] = useState<PaletteId>("rainbow");
   const rootRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -56,12 +56,12 @@ export function ColorSchemeWheel() {
       localStorage.removeItem("portfolio-palette-position-v2");
 
       const saved = localStorage.getItem("portfolio-palette");
-      const next = palettes.some((item) => item.id === saved) ? (saved as PaletteId) : "purple";
+      const next = palettes.some((item) => item.id === saved) ? (saved as PaletteId) : "rainbow";
       setPalette(next);
       document.documentElement.dataset.palette = next;
     } catch {
-      setPalette("purple");
-      document.documentElement.dataset.palette = "purple";
+      setPalette("rainbow");
+      document.documentElement.dataset.palette = "rainbow";
     }
 
     const handleToggle = () => setOpen((prev) => !prev);
@@ -159,7 +159,7 @@ export function ColorSchemeWheel() {
                     <div>
                       <p className="text-xs font-medium text-foreground">
                         {item.name}
-                        {item.id === "purple" && (
+                        {item.id === "rainbow" && (
                           <span className="ml-1.5 rounded bg-primary/20 px-1.5 py-0.5 text-[9px] font-semibold text-primary">
                             Default
                           </span>
@@ -184,10 +184,10 @@ export function ColorSchemeWheel() {
           {/* Footer Controls */}
           <div className="mt-3 flex items-center justify-between border-t border-border/80 pt-2.5">
             <button
-              onClick={() => selectPalette("purple")}
+              onClick={() => selectPalette("rainbow")}
               className="text-[10px] font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              Reset to Purple
+              Reset to Default
             </button>
             <span className="text-[10px] text-muted-foreground/60">
               Auto-saved

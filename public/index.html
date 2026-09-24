@@ -10,9 +10,9 @@
       try {
         localStorage.removeItem('portfolio-palette-position');
         var savedPalette = localStorage.getItem('portfolio-palette');
-        document.documentElement.dataset.palette = savedPalette === 'violet' ? 'purple' : (['purple', 'graphite', 'ocean', 'forest', 'rainbow'].includes(savedPalette) ? savedPalette : 'purple');
+        document.documentElement.dataset.palette = savedPalette === 'violet' ? 'purple' : (['purple', 'graphite', 'ocean', 'forest', 'rainbow'].includes(savedPalette) ? savedPalette : 'rainbow');
       } catch (error) {
-        document.documentElement.dataset.palette = 'purple';
+        document.documentElement.dataset.palette = 'rainbow';
       }
     </script>
     <link href="/styles.css" rel="stylesheet">

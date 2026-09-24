@@ -56,21 +56,80 @@
 }
 
 @keyframes rainbow-flow {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(180deg); }
-  100% { filter: hue-rotate(360deg); }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 :root[data-palette="rainbow"] .bg-primary {
-  background: linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8) !important;
-  background-size: 200% 200% !important;
-  animation: rainbow-flow 7s ease infinite !important;
+  background: linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8, #ff007a) !important;
+  background-size: 300% 300% !important;
+  animation: rainbow-flow 8s ease-in-out infinite !important;
 }
 
 :root[data-palette="rainbow"] .text-primary {
-  background: linear-gradient(135deg, #ff007a, #9333ea, #0070f3, #00dfd8);
+  background: linear-gradient(135deg, #ff007a, #9333ea, #0070f3, #00dfd8, #ff007a);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: rainbow-flow 8s ease-in-out infinite;
+}
+
+/* High-Impact Hero Typography with Smooth Liquid Chromatic Flow */
+:root[data-palette="rainbow"] .hero-name {
+  background: linear-gradient(135deg, #ffffff 5%, #ff007a 28%, #7928ca 48%, #0070f3 68%, #00dfd8 88%, #ffffff 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-flow 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 35px rgba(121, 40, 202, 0.35));
+}
+
+/* Deep Ambient Aurora Background */
+:root[data-palette="rainbow"] .theme-ambient {
+  background: radial-gradient(65% 65% at 85% 45%, rgba(121, 40, 202, 0.24) 0%, rgba(0, 112, 243, 0.14) 40%, rgba(255, 0, 122, 0.08) 70%, transparent 90%) !important;
+}
+
+:root[data-palette="rainbow"] .ambient-studio-light {
+  background: radial-gradient(70% 60% at 50% 0%, rgba(0, 112, 243, 0.18) 0%, rgba(121, 40, 202, 0.14) 45%, rgba(0, 223, 216, 0.08) 75%, transparent 92%) !important;
+}
+
+/* Iridescent Spectrum Spotlight on Cards */
+:root[data-palette="rainbow"] .spotlight-card::before {
+  background: radial-gradient(
+    360px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    #ff007a 0%,
+    #7928ca 30%,
+    #0070f3 65%,
+    #00dfd8 85%,
+    transparent 100%
+  ) !important;
+}
+
+:root[data-palette="rainbow"] .spotlight-card::after {
+  background: radial-gradient(
+    420px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(121, 40, 202, 0.14) 0%,
+    rgba(0, 112, 243, 0.08) 50%,
+    rgba(0, 223, 216, 0.04) 75%,
+    transparent 100%
+  ) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-palette="rainbow"] .hero-name,
+  :root[data-palette="rainbow"] .bg-primary,
+  :root[data-palette="rainbow"] .text-primary {
+    animation: none !important;
+    background-position: 50% 50% !important;
+    filter: none !important;
+  }
 }
 
 @layer base {
