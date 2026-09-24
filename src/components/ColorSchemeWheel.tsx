@@ -31,6 +31,13 @@ const palettes = [
     accent: "#4ade80",
     bg: "#091811",
   },
+  {
+    id: "rainbow",
+    name: "Rainbow Prism",
+    subtitle: "Chromatic Iridescent",
+    accent: "linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8)",
+    bg: "#150a24",
+  },
 ] as const;
 
 type PaletteId = typeof palettes[number]["id"];
@@ -109,14 +116,9 @@ export function ColorSchemeWheel() {
           <div className="flex items-center justify-between border-b border-border/80 pb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-primary" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
-                  Color Palette
-                </p>
-                <p className="text-[10px] text-muted-foreground">
-                  Refined luxury theme presets
-                </p>
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+                Color Palette
+              </p>
             </div>
             <button
               onClick={() => setOpen(false)}
@@ -151,7 +153,7 @@ export function ColorSchemeWheel() {
                     >
                       <span
                         className="h-3.5 w-3.5 rounded-full shadow-sm ring-1 ring-white/20"
-                        style={{ backgroundColor: item.accent }}
+                        style={{ background: item.accent }}
                       />
                     </div>
                     <div>

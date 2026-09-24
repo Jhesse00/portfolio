@@ -49,6 +49,30 @@
   --muted-foreground: 155 16% 68%; --accent: 160 28% 19%; --accent-foreground: 140 30% 96%; --border: 165 22% 22%; --input: 165 22% 26%; --ring: 152 69% 58%;
 }
 
+:root[data-palette="rainbow"] {
+  --background: 275 35% 6.5%; --foreground: 300 30% 98%; --card: 275 30% 9.5%; --card-foreground: 300 30% 98%;
+  --primary: 325 90% 68%; --primary-foreground: 0 0% 100%; --secondary: 275 25% 16%; --muted: 275 22% 15%;
+  --muted-foreground: 285 20% 72%; --accent: 275 30% 20%; --accent-foreground: 300 30% 98%; --border: 275 25% 24%; --input: 275 25% 28%; --ring: 325 90% 68%;
+}
+
+@keyframes rainbow-flow {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+:root[data-palette="rainbow"] .bg-primary {
+  background: linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8) !important;
+  background-size: 200% 200% !important;
+  animation: rainbow-flow 7s ease infinite !important;
+}
+
+:root[data-palette="rainbow"] .text-primary {
+  background: linear-gradient(135deg, #ff007a, #9333ea, #0070f3, #00dfd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @layer base {
   * {
     @apply border-border;
