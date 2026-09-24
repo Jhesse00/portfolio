@@ -112,6 +112,25 @@ export function Navbar() {
           >
             Connect
           </button>
+
+          {/* Quick Color Scheme Trigger in Navbar */}
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("toggle-palette"))}
+            className="btn-tactile group relative ml-1.5 flex h-9 items-center gap-1.5 rounded-md border border-border/80 bg-card/60 px-2.5 text-xs text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground"
+            title="Choose color scheme"
+            aria-label="Choose color scheme"
+          >
+            <span
+              className="h-3 w-3 shrink-0 rounded-full shadow-sm ring-1 ring-white/10"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #c4a7ff, #60a5fa, #4ade80, #f4f4f5, #c4a7ff)",
+              }}
+            />
+            <span className="hidden text-[11px] font-medium uppercase tracking-wider xl:inline">
+              Theme
+            </span>
+          </button>
         </div>
 
         <button
@@ -141,6 +160,22 @@ export function Navbar() {
                 {item.name}
               </button>
             ))}
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                window.dispatchEvent(new CustomEvent("toggle-palette"));
+              }}
+              className="flex w-full items-center justify-between py-4 text-left text-sm uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <span>Color Scheme</span>
+              <span
+                className="h-4 w-4 rounded-full shadow-sm"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, #c4a7ff, #60a5fa, #4ade80, #f4f4f5, #c4a7ff)",
+                }}
+              />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
