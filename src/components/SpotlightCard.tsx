@@ -37,7 +37,7 @@ export function SpotlightCard({
       className={`spotlight-card ${className}`}
       {...props}
     >
-      <div className="relative z-10 h-full">{children}</div>
+      {children}
     </Component>
   );
 }

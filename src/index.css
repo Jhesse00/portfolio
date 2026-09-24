@@ -186,6 +186,11 @@
     overflow: hidden;
   }
 
+  .spotlight-card > * {
+    position: relative;
+    z-index: 5;
+  }
+
   /* 1px border highlight precisely following cursor */
   .spotlight-card::before {
     content: "";
