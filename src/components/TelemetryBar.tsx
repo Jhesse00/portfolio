@@ -14,7 +14,7 @@ export function TelemetryBar() {
     setIsPinging(true);
     const start = performance.now();
     try {
-      const res = await fetch(`/api/ping?_t=${Date.now()}`, { cache: "no-store" });
+      const res = await fetch(`/ping.txt?_t=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
         const elapsed = Math.round(performance.now() - start);
         setPing(elapsed);
