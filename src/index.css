@@ -50,9 +50,74 @@
 }
 
 :root[data-palette="rainbow"] {
-  --background: 275 35% 6.5%; --foreground: 300 30% 98%; --card: 275 30% 9.5%; --card-foreground: 300 30% 98%;
-  --primary: 325 90% 68%; --primary-foreground: 0 0% 100%; --secondary: 275 25% 16%; --muted: 275 22% 15%;
-  --muted-foreground: 285 20% 72%; --accent: 275 30% 20%; --accent-foreground: 300 30% 98%; --border: 275 25% 24%; --input: 275 25% 28%; --ring: 325 90% 68%;
+  --background: 240 12% 4%;
+  --foreground: 300 20% 98%;
+  --card: 240 10% 7.5%;
+  --card-foreground: 300 20% 98%;
+  --primary: 325 90% 68%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 10% 14%;
+  --muted: 240 8% 12%;
+  --muted-foreground: 250 15% 72%;
+  --accent: 275 25% 18%;
+  --accent-foreground: 300 20% 98%;
+  --border: 240 10% 18%;
+  --input: 240 10% 22%;
+  --ring: 325 90% 68%;
+}
+
+:root[data-palette="rainbow"] section {
+  background-color: transparent !important;
+}
+
+@keyframes aurora-drift-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(80px, 45px, 0) scale(1.12); }
+  100% { transform: translate3d(-40px, 70px, 0) scale(0.95); }
+}
+
+@keyframes aurora-drift-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-70px, -50px, 0) scale(0.92); }
+  100% { transform: translate3d(60px, -20px, 0) scale(1.15); }
+}
+
+@keyframes aurora-drift-3 {
+  0% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(50px, -60px, 0) scale(1.18); }
+  100% { transform: translate3d(-80px, 30px, 0) scale(1.02); }
+}
+
+@keyframes aurora-drift-4 {
+  0% { transform: translate3d(0, 0, 0) scale(1.1); }
+  50% { transform: translate3d(-60px, 60px, 0) scale(0.9); }
+  100% { transform: translate3d(70px, -40px, 0) scale(1.05); }
+}
+
+.chromatic-aurora {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+:root[data-palette="rainbow"] .chromatic-aurora {
+  opacity: 1;
+}
+
+.aurora-orb-1 {
+  animation: aurora-drift-1 20s ease-in-out infinite alternate;
+}
+.aurora-orb-2 {
+  animation: aurora-drift-2 24s ease-in-out infinite alternate;
+}
+.aurora-orb-3 {
+  animation: aurora-drift-3 22s ease-in-out infinite alternate;
+}
+.aurora-orb-4 {
+  animation: aurora-drift-4 26s ease-in-out infinite alternate;
+}
+.aurora-orb-5 {
+  animation: aurora-drift-1 18s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes rainbow-flow {
@@ -93,11 +158,11 @@
 
 /* Deep Ambient Aurora Background */
 :root[data-palette="rainbow"] .theme-ambient {
-  background: radial-gradient(65% 65% at 85% 45%, rgba(121, 40, 202, 0.24) 0%, rgba(0, 112, 243, 0.14) 40%, rgba(255, 0, 122, 0.08) 70%, transparent 90%) !important;
+  background: radial-gradient(65% 65% at 85% 45%, rgba(121, 40, 202, 0.28) 0%, rgba(0, 112, 243, 0.16) 40%, rgba(255, 0, 122, 0.12) 70%, transparent 90%) !important;
 }
 
 :root[data-palette="rainbow"] .ambient-studio-light {
-  background: radial-gradient(70% 60% at 50% 0%, rgba(0, 112, 243, 0.18) 0%, rgba(121, 40, 202, 0.14) 45%, rgba(0, 223, 216, 0.08) 75%, transparent 92%) !important;
+  background: radial-gradient(70% 60% at 50% 0%, rgba(0, 112, 243, 0.2) 0%, rgba(121, 40, 202, 0.16) 45%, rgba(0, 223, 216, 0.1) 75%, transparent 92%) !important;
 }
 
 /* Iridescent Spectrum Spotlight on Cards */

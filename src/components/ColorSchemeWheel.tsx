@@ -8,7 +8,7 @@ const palettes = [
     name: "Rainbow Prism",
     subtitle: "Chromatic Iridescent",
     accent: "linear-gradient(135deg, #ff007a, #7928ca, #0070f3, #00dfd8)",
-    bg: "#150a24",
+    bg: "#08080c",
   },
   {
     id: "purple",
