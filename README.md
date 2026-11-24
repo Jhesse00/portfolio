@@ -1,67 +1,46 @@
-# Johanne Hesse's Portfolio
+# Portfolio
 
-## Features
+Source for [johannehesse.dev](https://johannehesse.dev), Johanne Hesse's personal site. It covers background, experience, featured projects, a resume viewer, and contact details. It also hosts a browser-only demo of the Metadata Privacy Scanner at `/metadata-scanner`.
 
-- Responsive portfolio layout for mobile, tablet, and desktop
-- Light and dark theme support
-- Featured project cards with categories, technology tags, and GitHub links
-- Resume section with downloadable PDF support
-- Contact form powered by EmailJS
-- Framer Motion animations for smooth section transitions
+## Stack
 
-## Tech Stack
-
-- React
-- TypeScript
+- React 18 and TypeScript
 - Tailwind CSS
 - Framer Motion
-- Express
-- esbuild
-- EmailJS
+- Radix UI primitives and lucide-react icons
+- esbuild for bundling (`scripts/build.js`)
+- Express for the local server (`server.js`)
 
-## Setup
+Requires Node.js 18 or later.
 
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the local server:
+## Local development
 
 ```bash
+npm ci
 npm start
 ```
 
-Open the site at:
+The site runs at http://localhost:4000. `npm run dev` runs the same server under nodemon, which restarts it on file changes.
 
-```text
-http://localhost:4000
-```
-
-Build production assets:
+## Build
 
 ```bash
 npm run build
 ```
 
-On Windows PowerShell, use `npm.cmd` if script execution policy blocks `npm`:
+The build writes `public/main.js`, `public/main.js.map`, and `public/styles.css`. These files are tracked, so commit them after changing source files.
 
-```powershell
-npm.cmd install
-npm.cmd run build
-```
-
-## Project Structure
+## Project structure
 
 ```text
-src/components/          Reusable page sections and UI components
-src/components/projects/ Project-specific display components
-src/data/                Portfolio content data
-src/lib/                 Shared utilities
-public/                  Static assets and built output
-scripts/                 Build scripts
+src/components/  Page sections and UI components
+src/data/        Project and organization content
+src/lib/         Shared utilities
+src/pages/       Metadata Privacy Scanner demo page
+public/          Static assets and built output
+scripts/         Build scripts
 ```
 
-## Screenshots
+## Deployment
 
+Deployed on Vercel. `vercel.json` builds the site with `@vercel/static-build` and serves `public/`.

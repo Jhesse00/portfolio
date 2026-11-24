@@ -109,7 +109,7 @@ function NetworkPreview() {
   const [online, setOnline] = useState(true);
   const nodes = [
     { icon: Wifi, label: "WAN", pos: "left-3 top-[42%]" },
-    { icon: Lock, label: "pfSense", pos: "left-[38%] top-[15%]" },
+    { icon: Lock, label: "OPNsense", pos: "left-[38%] top-[15%]" },
     { icon: Server, label: "Proxmox", pos: "right-3 top-[42%]" },
     { icon: HardDrive, label: "Docker", pos: "left-[38%] bottom-2" },
   ];
